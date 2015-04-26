@@ -7,12 +7,30 @@
 ##  Starts in directory UCI HAR Dataset
 trainDF = read.table("./train/X_train.txt", header = FALSE, sep = "")
 trainSub <- read.table("./train/subject_train.txt", header = FALSE, sep = "")
+trainAct <- read.table("./train/Y_train.txt", header = FALSE, sep = "")
 trainDF["subject"] <- NA
 trainDF$subject <- trainSub$V1
+trainDF["activity"] <- NA
+trainDF$activity <- trainAct$V1
 testDF = read.table("./test/X_test.txt", header = FALSE, sep = "")
 testSub <- read.table("./test/subject_test.txt", header = FALSE, sep = "")
+testAct <- read.table("./test/Y_train.txt", header = FALSE, sep = "")
 testDF["subject"] <- NA
 testDF$subject <- testSub$V1
-## merges the files together row(s) 
+testDF["activity"] <- NA
+testDF$activity <- testAct$V1
+## merges the files together ADD row(s) 
 resDF = rbind(testDF,trainDF,dparse.level=1)
-sumDF <- summary(resDF)
+sumDF <- summary(resDF)actDF
+## DF for information o column names and activity names 
+actDF = read.table("./activity_labels.txt", header = FALSE, sep = "")
+featDF = read.table("./features.txt", header = TRUE, sep = "")
+##use dplyr to select mean and sd columns 
+library(dplyr)
+selDF <- select(resDF, subject,activity,1:6,41:46,81:86,121:126,161:166,201,202,214,215,227,228,40,241,253,254,266:271,345:350,424:429,503:504)
+## rename columns
+selDF <- rename(selDF,V1=tBodyAcc-mean-X,V2=tBodyAcc-mean-Y,V3=tBodyAcc-mean-Z)
+selDF <- rename(selDF,V4=tBodyAcc-std-X,V5=tBodyAcc-std-Y,V6=tBodyAcc-std-Z)
+## writes text file
+write.table(selDF,file="./tidy.txt",row.name=FALSE)
+## end of analysis
