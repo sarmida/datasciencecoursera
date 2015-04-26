@@ -32,7 +32,7 @@ selDF <- select(resDF, subject,activity,1:6,41:46,81:86,121:126,161:166,201,202,
 selDF <- rename(selDF,tBodyAcc_mean_X=V1,tBodyAcc_mean_Y=V2,tBodyAcc_mean_Z=V3)
 selDF <- rename(selDF,tBodyAcc_std_X=V4,tBodyAcc_std_Y=V5,tBodyAcc_std_Z=V6)
 # get mean value for activuty and subject
-# grpDF <- groupby(selDF,subject,activity,mean(tBody_Acc_mean_X))
+# grpDF <- groupby(selDF,subject,activity,mean(tBody_Acc_mean_X),mean(tBody_Acc_mean_Y),mean(tBody_Acc_mean_Z),mean(tBody_Acc_std_X),mean(tBody_Acc_std_Y),mean(tBody_Acc_mean_Z),mean(tV41),mean(tV42),mean(tV43),mean(tV44),mean(tV45),mean(tV46),mean(tV81),mean(tV82),mean(tV83),mean(tV84),mean(tV85),mean(tV86),mean(tV121),mean(tV122),....)
 ## writes text file
 write.table(selDF,file="./tidy.txt",row.name=FALSE)
 ## end of analysis
