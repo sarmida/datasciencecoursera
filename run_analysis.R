@@ -29,8 +29,10 @@ featDF = read.table("./features.txt", header = TRUE, sep = "")
 library(dplyr)
 selDF <- select(resDF, subject,activity,1:6,41:46,81:86,121:126,161:166,201,202,214,215,227,228,40,241,253,254,266:271,345:350,424:429,503:504)
 ## rename columns
-selDF <- rename(selDF,V1=tBodyAcc-mean-X,V2=tBodyAcc-mean-Y,V3=tBodyAcc-mean-Z)
-selDF <- rename(selDF,V4=tBodyAcc-std-X,V5=tBodyAcc-std-Y,V6=tBodyAcc-std-Z)
+selDF <- rename(selDF,tBodyAcc_mean_X=V1,tBodyAcc_mean_Y=V2,tBodyAcc_mean_Z=V3)
+selDF <- rename(selDF,tBodyAcc_std_X=V4,tBodyAcc_std_Y=V5,tBodyAcc_std_Z=V6)
+# get mean value for activuty and subject
+# grpDF <- groupby(selDF,subject,activity,mean(tBody_Acc_mean_X))
 ## writes text file
 write.table(selDF,file="./tidy.txt",row.name=FALSE)
 ## end of analysis
