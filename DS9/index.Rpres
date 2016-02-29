@@ -1,0 +1,49 @@
+index.Rmd
+mtcars 
+segmentation visualizer
+========================================================
+author: Santiago Armida
+date: February 28, 2016
+
+Introduction
+========================================================
+
+The application is very simple.
+It is based in an example code available in the Gallery section of the shinyapps.io page.
+It has three inputs:
+
+- First variable selection
+- Second variable selection
+- Number of clusters
+
+It uses the mtcars file supplied with R.
+The description of the file is as follows
+ 
+The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973 and 74 models).
+
+Firt rows: Slide With Code
+========================================================
+
+```{r}
+head(mtcars)
+```
+
+Slide With Plot
+========================================================
+
+```{r, echo=FALSE}
+coplot(mpg ~ disp | as.factor(cyl), data = mtcars,
+       panel = panel.smooth, rows = 1)
+#plot(mtcars)
+```
+Conclusion
+========================================================
+
+These are very powerfull tools to develop and deploy applications.
+Although must of the development can be made in RStudio with R there are some additional thing that can be added. 
+- HTML code
+- Some additionals in internet page handling
+
+As data is available for different intersts, many analysis can be performed to select and clean the data.
+
+Then there are very powerfull analyticall tools that can be used to explore and use the data to get better results.
